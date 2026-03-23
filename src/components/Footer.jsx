@@ -25,7 +25,7 @@ const NAV_LINKS = [
 const CONTACT_INFO = [
   { icon: "📍", text: "Bogotá, Colombia"               },
   { icon: "📞", text: "+57 302 541 6369"               },
-  { icon: "✉️", text: "contacto@remodelacioneshj.com"  },
+  { icon: "✉️", text: "remodelacionehj@gmail.com"  },
   { icon: "⏰", text: "Lun–Sáb  8:00am – 6:00pm"      },
 ];
 
