@@ -36,7 +36,7 @@ function Nosotros() {
           <h2 className="section-title">Sobre<br />Remodelaciones H&amp;J</h2>
           <div className="gold-line" />
           <p className="section-subtitle" style={{ maxWidth: "100%" }}>
-            Somos una empresa familiar con más de 10 años transformando hogares y espacios comerciales en Medellín. Nos especializamos en remodelaciones, acabados, pintura y construcción general.
+            Somos una empresa familiar con más de 10 años transformando hogares y espacios comerciales. Nos especializamos en remodelaciones, acabados, pintura y construcción general.
           </p>
           <p className="section-subtitle" style={{ maxWidth: "100%", marginTop: "1rem" }}>
             Nuestro equipo de profesionales trabaja con los mejores materiales del mercado, garantizando resultados que superan las expectativas de cada cliente. La honestidad, el cumplimiento y la calidad son nuestros pilares.

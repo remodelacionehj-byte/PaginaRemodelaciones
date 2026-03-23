@@ -1,12 +1,23 @@
+// src/components/Contacto.jsx
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import "../styles/Contacto.css";
 
+// ─────────────────────────────────────────────────────────────
+// CREDENCIALES — leídas desde variables de entorno (.env)
+// En desarrollo: crea src/.env.local con estas variables
+// En Vercel:     agrégalas en Settings → Environment Variables
+// ─────────────────────────────────────────────────────────────
+const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+const MAX_CHARS = 500;
+
 function Contacto() {
   const form = useRef();
   const [charCount, setCharCount] = useState(0);
-  const [status, setStatus] = useState("idle"); // idle | sending | success | error
-  const MAX_CHARS = 500;
+  const [status,    setStatus]    = useState("idle"); // idle | sending | success | error
 
   const enviarEmail = (e) => {
     e.preventDefault();
@@ -20,32 +31,27 @@ function Contacto() {
       time:    new Date().toLocaleString("es-CO"),
     };
 
-    emailjs.send(
-      "service_fgnfh3j",
-      "template_hsofsyg",
-      datos,
-      { publicKey: "lgRy7nVopnTRKCTVv" } // 🔑 reemplaza con tu clave actual
-    )
-    .then(() => {
-      setStatus("success");
-      form.current.reset();
-      setCharCount(0);
-      setTimeout(() => setStatus("idle"), 4000);
-    })
-    .catch(() => {
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 4000);
-    });
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, datos, { publicKey: PUBLIC_KEY })
+      .then(() => {
+        setStatus("success");
+        form.current.reset();
+        setCharCount(0);
+        setTimeout(() => setStatus("idle"), 4000);
+      })
+      .catch(() => {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 4000);
+      });
   };
 
   return (
     <section id="contacto" className="contacto-section">
-      {/* Orbes de fondo */}
       <div className="orb orb-1" />
       <div className="orb orb-2" />
 
       <div className="contacto-container">
-        {/* Columna izquierda */}
+
+        {/* ── Columna izquierda ──────────────────── */}
         <div className="contacto-info">
           <span className="contacto-tag">✦ Hablemos</span>
           <h2 className="contacto-titulo">
@@ -63,7 +69,7 @@ function Contacto() {
             </div>
             <div className="dato-item">
               <span className="dato-icon">⏱️</span>
-              <span>Respuesta en el menor tiempo posible (24h)</span>
+              <span>Respuesta en menos de 24h</span>
             </div>
             <div className="dato-item">
               <span className="dato-icon">💬</span>
@@ -72,8 +78,9 @@ function Contacto() {
           </div>
         </div>
 
-        {/* Formulario glassmorphism */}
+        {/* ── Formulario glassmorphism ───────────── */}
         <div className="glass-card">
+
           {status === "success" && (
             <div className="status-msg success">
               <span>✓</span> ¡Mensaje enviado! Te contactamos pronto.
@@ -91,12 +98,7 @@ function Contacto() {
               <label>Asunto</label>
               <div className="field-wrap">
                 <span className="field-icon">✦</span>
-                <input
-                  type="text"
-                  name="title"
-                  placeholder="¿En qué te podemos ayudar?"
-                  required
-                />
+                <input type="text" name="title" placeholder="¿En qué te podemos ayudar?" required />
               </div>
             </div>
 
@@ -105,12 +107,7 @@ function Contacto() {
                 <label>Nombre</label>
                 <div className="field-wrap">
                   <span className="field-icon">◈</span>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Tu nombre completo"
-                    required
-                  />
+                  <input type="text" name="name" placeholder="Tu nombre completo" required />
                 </div>
               </div>
 
@@ -118,12 +115,7 @@ function Contacto() {
                 <label>Correo</label>
                 <div className="field-wrap">
                   <span className="field-icon">◉</span>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="tu@correo.com"
-                    required
-                  />
+                  <input type="email" name="email" placeholder="tu@correo.com" required />
                 </div>
               </div>
             </div>
@@ -155,7 +147,7 @@ function Contacto() {
               {status === "sending" ? (
                 <><span className="spinner" /> Enviando...</>
               ) : (
-                <> Enviar mensaje <span className="btn-arrow">→</span></>
+                <>Enviar mensaje <span className="btn-arrow">→</span></>
               )}
             </button>
 
