@@ -1,0 +1,256 @@
+/* src/components/Header.css */
+
+/* ── Header base ───────────────────────────────── */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2.5rem;
+  transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+  background: transparent;
+}
+
+.header-scroll {
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  padding: 0.7rem 2.5rem;
+}
+
+/* Logo */
+.header-logo img {
+  height: 45px;
+  display: block;
+  transition: opacity 0.2s;
+}
+.header-logo:hover img { opacity: 0.8; }
+
+/* ── Nav desktop ───────────────────────────────── */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.nav a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #c9a84c;
+  border-radius: 2px;
+  transition: width 0.25s ease;
+}
+
+.nav a:hover,
+.nav a.active { color: #fff; }
+
+.nav a:hover::after,
+.nav a.active::after { width: 100%; }
+
+/* ── Hamburguesa ───────────────────────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 1100;
+  position: relative;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+  transform-origin: center;
+}
+
+/* Animación X */
+.hamburger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Menú móvil ────────────────────────────────── */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: min(320px, 85vw);
+  height: 100dvh;
+  background: #0d0d0d;
+  border-left: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1050;
+}
+
+.mobile-menu.is-open {
+  right: 0;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.mobile-nav a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.mobile-nav a:hover {
+  color: #c9a84c;
+  transform: translateX(4px);
+}
+
+/* Overlay oscuro */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(2px);
+  z-index: 1040;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Responsive breakpoints ────────────────────── */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem 1.25rem;
+  }
+  .header-scroll {
+    padding: 0.7rem 1.25rem;
+  }
+  .nav {
+    display: none; /* ocultar nav desktop */
+  }
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* src/components/Header.css */
+
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 2.5rem;
+  transition: background 0.35s, box-shadow 0.35s, padding 0.35s;
+}
+.header-scroll {
+  background: rgba(8,8,8,0.92);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.4);
+  padding: 0.85rem 2.5rem;
+}
+.header-logo img { height: 42px; display: block; transition: opacity 0.2s; }
+.header-logo:hover img { opacity: 0.8; }
+
+/* Nav desktop */
+.nav { display: flex; align-items: center; gap: 2.5rem; }
+.nav a {
+  color: rgba(255,255,255,0.75);
+  font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em;
+  position: relative; transition: color 0.2s;
+}
+.nav a::after {
+  content: ""; position: absolute;
+  bottom: -4px; left: 0; width: 0; height: 1.5px;
+  background: #c9a84c; border-radius: 2px;
+  transition: width 0.25s ease;
+}
+.nav a:hover, .nav a.active { color: #fff; }
+.nav a:hover::after, .nav a.active::after { width: 100%; }
+
+/* Hamburguesa */
+.hamburger {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  width: 40px; height: 40px; background: none; border: none;
+  cursor: pointer; padding: 4px; z-index: 1100;
+}
+.hamburger span {
+  display: block; width: 100%; height: 1.5px; background: #fff;
+  border-radius: 2px; transition: transform 0.3s, opacity 0.3s;
+  transform-origin: center;
+}
+.hamburger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Menú móvil */
+.mobile-menu {
+  position: fixed; top: 0; right: -100%;
+  width: min(300px, 82vw); height: 100dvh;
+  background: #0d0d0d; border-left: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: center; justify-content: center;
+  transition: right 0.36s cubic-bezier(0.4,0,0.2,1); z-index: 1050;
+}
+.mobile-menu.is-open { right: 0; }
+
+.mobile-nav { display: flex; flex-direction: column; align-items: center; gap: 2.5rem; }
+.mobile-nav a {
+  color: rgba(255,255,255,0.7);
+  font-size: 1.45rem; font-weight: 600; letter-spacing: 0.05em;
+  transition: color 0.2s, transform 0.2s;
+}
+.mobile-nav a:hover { color: #c9a84c; transform: translateX(4px); }
+
+.menu-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.65); backdrop-filter: blur(2px);
+  z-index: 1040; animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+@media (max-width: 768px) {
+  .header        { padding: 1rem 1.25rem; }
+  .header-scroll { padding: 0.75rem 1.25rem; }
+  .nav           { display: none; }
+  .hamburger     { display: flex; }
+}
